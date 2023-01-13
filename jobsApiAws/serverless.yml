@@ -1,0 +1,23 @@
+
+service: jobsapiaws
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  memorySize: 2048
+  stage: dev
+  timeout: 20
+  region: us-east-1
+
+functions:
+  fun:
+    handler: handler.fun 
+    events:
+      - http: ANY /{proxy+}
+      - http: ANY /
+    environment:
+      MONGO_URI:  mongodb+srv://Sachchin06:ceylonuni@cluster0.jiqdoh2.mongodb.net/Jobs-Api-aws?retryWrites=true&w=majority
+      JWT_SECRET: aPdSgVkYp3s6v9y$B?E(H+MbQeThWmZq
+      JWT_LIFETIME: 30d
