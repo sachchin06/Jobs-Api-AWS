@@ -4,8 +4,6 @@ require("express-async-errors");
 const express = require("express");
 const app = express();
 
-const connectDB = require("./db/connect");
-
 // routers
 
 const authCognitoRouter = require("./routes/auth-cognito");
@@ -26,8 +24,5 @@ app.use("/api/v1/authCognito", authCognitoRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
-
-connectDB(process.env.MONGO_URI);
-console.log("DB Connected ...");
 
 module.exports = app;
