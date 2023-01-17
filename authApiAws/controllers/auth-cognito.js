@@ -1,4 +1,5 @@
 const AmazonCognitoIdentity = require("amazon-cognito-identity-js");
+const User = require("../models/User");
 
 var poolData = {
   UserPoolId: "us-east-1_o5UNdgRXq",
@@ -51,15 +52,13 @@ function doSignup(req, attributeList, callback) {
       console.log(result);
       var cognitoUser = result.user;
       console.log("user name is " + cognitoUser.getUsername());
-      console.log("user name is " + result.userSub);
+      console.log("user sub is " + result.userSub);
 
-      //   var data = await prisma.users.create({
-      //     data: {
-      //       key: result.userSub,
-      //       name: cognitoUser.getUsername(),
-      //     },
-      //   });
-      //   console.log(">>>>>>>>>DB USER:>>>>>", data);
+      const user = await User.create({
+        key: result.userSub,
+        username: cognitoUser.getUsername(),
+      });
+
       callback(null, result);
       return;
     }

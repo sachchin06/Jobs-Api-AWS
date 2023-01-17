@@ -17,3 +17,7 @@ functions:
     events:
       - http: ANY /{proxy+}
       - http: ANY /
+    environment:
+      MONGO_URI:  mongodb+srv://Sachchin06:ceylonuni@cluster0.jiqdoh2.mongodb.net/Jobs-Api-aws?retryWrites=true&w=majority
+      JWT_SECRET: aPdSgVkYp3s6v9y$B?E(H+MbQeThWmZq
+      JWT_LIFETIME: 30d

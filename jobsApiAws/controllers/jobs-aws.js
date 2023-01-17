@@ -7,6 +7,8 @@ const {
 } = require("../errors");
 
 const getAllJobs = async (req, res) => {
+  // res.send(req.user);
+  // console.log(req.user);
   const jobs = await Job.find({ createdBy: req.user.email }).sort("createdAt");
   res.status(StatusCodes.OK).json({ jobs, count: jobs.length });
 };
